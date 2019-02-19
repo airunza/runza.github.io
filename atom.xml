@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Runza</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://runza.top/"/>
+  <updated>2019-02-15T10:01:38.000Z</updated>
+  <id>http://runza.top/</id>
+  
+  <author>
+    <name>Run Za</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>本地使用https开发</title>
+    <link href="http://runza.top/2019/02/15/hello-world/"/>
+    <id>http://runza.top/2019/02/15/hello-world/</id>
+    <published>2019-02-15T10:01:38.000Z</published>
+    <updated>2019-02-15T10:01:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>因为在公司以后的项目都要求使用https开发，所以总结了一下本地使用https开发的流程。HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性。</p><a id="more"></a><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ 安装nginx</span><br><span class="line">$ 安装自签名证书</span><br><span class="line">$ 配置nginx</span><br><span class="line">$ 信任证书</span><br></pre></td></tr></table></figure><!-- More info: [Writing](https://hexo.io/docs/writing.html) --><h3 id="2-安装nginx"><a href="#2-安装nginx" class="headerlink" title="2.安装nginx"></a>2.安装nginx</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ 安装brew命令ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br><span class="line">$ 安装nginx  brew install nginx</span><br></pre></td></tr></table></figure><!-- More info: [Server](https://hexo.io/docs/server.html) --><h3 id="3-安装自签名证书"><a href="#3-安装自签名证书" class="headerlink" title="3.安装自签名证书"></a>3.安装自签名证书</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ 生成秘钥key                                           openssl genrsa -des3 -out server.key 2048</span><br><span class="line">$ 创建服务器证书的申请文件server.csr                       openssl req -new -key server.key -out server.csr</span><br><span class="line">$ 创建ca证书                                            openssl req -new -x509 -key server.key -out ca.crt -days 3650</span><br><span class="line">$ 创建自当前日期起有效期为期十年的服务器证书server.crt        openssl x509 -req -days 3650 -<span class="keyword">in</span> server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt</span><br></pre></td></tr></table></figure><!-- More info: [Generating](https://hexo.io/docs/generating.html) --><h3 id="4-配置nginx"><a href="#4-配置nginx" class="headerlink" title="4.配置nginx"></a>4.配置nginx</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ 打开nginx-conf</span><br><span class="line">$ 将证书位置放入对应的公钥和私钥</span><br><span class="line">$ 启动nginx</span><br><span class="line">$ 通过https:localhost:443访问网站</span><br></pre></td></tr></table></figure><h3 id="5-信任证书"><a href="#5-信任证书" class="headerlink" title="5.信任证书"></a>5.信任证书</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ 打开浏览器，进入开发者模式，选择安全，选择查看证书</span><br><span class="line">$ 将证书拖入本地，添加到钥匙串当中，选择始终信任</span><br><span class="line">$ 就可以正常访问了</span><br></pre></td></tr></table></figure><!-- More info: [Deployment](https://hexo.io/docs/deployment.html) -->]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;因为在公司以后的项目都要求使用https开发，所以总结了一下本地使用https开发的流程。HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
